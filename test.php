@@ -12,7 +12,7 @@ Test
 </head>
 <body>
 <?php
-	echo "Hello";
+	echo "Dit is een test";
 ?>
 </body>
 </html>
