@@ -8,7 +8,16 @@
 	// connect to the database + select database
 	include_once "mysql_connect.php";
 	//select ALL data in the table
-	$sql = "SELECT * FROM evenement";
+	// TODO: select only the date in d-m-Y format of datetime fields
+	$sql = "SELECT naam,
+			date_format(start_datum, '%d-%m-%Y') AS start_datum,
+			date_format(eind_datum, '%d-%m-%Y') AS eind_datum,
+			date_format(voorbereiding_datum, '%d-%m-%Y') AS voorbereiding_datum,
+			soort_evenement,
+			opmerking,
+			briefing_map,
+			afgerond
+			FROM evenement";
 	// store above command in the variable $records
 	$records = mysql_query($sql);
 ?>
