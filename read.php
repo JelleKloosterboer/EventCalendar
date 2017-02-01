@@ -1,5 +1,8 @@
-<?php 
- require 'database.php';
+<?php
+	session_start();
+	
+	require 'database.php';
+	//check for the id (row)
     $id = null;
     if ( !empty($_GET['id'])) {
         $id = $_REQUEST['id'];
@@ -8,6 +11,7 @@
     if ( null==$id ) {
         header("Location: index.php");
     } else {
+		// fetch the corresponding row from the database
         $pdo = Database::connect();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "SELECT id,
@@ -102,7 +106,8 @@
                         </div>
                       </div>
                         <div class="form-actions">
-                          <a class="btn" href="index.php">Back</a>
+							<a class="btn btn-success" href="update.php">Bewerken</a>
+							<a class="btn" href="dashboard.php">Terug</a>
                        </div>
                      
                       

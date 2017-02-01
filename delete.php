@@ -1,4 +1,5 @@
 <?php
+	session_start();
     require 'database.php';
     $id = 0;
      
@@ -17,7 +18,7 @@
         $q = $pdo->prepare($sql);
         $q->execute(array($id));
         Database::disconnect();
-        header("Location: index.php");
+        header("Location: dashboard.php");
         
 		
     }
@@ -53,7 +54,7 @@
                       <p class="alert alert-error">Weet je zeker dat je dit evenement wilt verwijderen?</p>
                       <div class="form-actions">
                           <button type="submit" class="btn btn-danger">Ja</button>
-                          <a class="btn" href="index.php">Nee</a>
+                          <a class="btn" href="dashboard.php">Nee</a>
                         </div>
                     </form>
                 </div>

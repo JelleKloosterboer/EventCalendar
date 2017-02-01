@@ -1,5 +1,4 @@
 <?php
-	 // TODO: When logged in correctly, echo the session id 
      // all green code is optional
     require 'database.php';
  
@@ -33,23 +32,8 @@
 			$sql = "SELECT * FROM gebruiker WHERE gebruikersnaam = ? AND wachtwoord = ?";
 			$q = $pdo->prepare($sql);
 			$q->execute(array($user,$pass));
-			$data = $q->fetch(PDO::FETCH_ASSOC);
-			//$sid = $data['id'];
-			//check if logged in correctly
-			if ($data == false) {
-				echo "<script type='text/javascript'>alert('Verkeerde gebruikersnaam en/of wachtwoord')</script>";
-			} else {
-				if($pass == $data['wachtwoord']) {
-						//$_SESSION['id'] = $data['id'];
-						header("Location: dashboard.php");
-					}
-					else
-						echo "<script type='text/javascript'>alert('Verkeerde gebruikersnaam en/of wachtwoord')</script>";
-				}
-			
 			Database::disconnect();
-			
-			
+			header("Location: index.php");
 		}		
     }
 ?>
@@ -68,7 +52,7 @@
                         <h3>Inloggen</h3>
                     </div>
              
-                    <form class="form-horizontal" action="index.php" method="post">
+                    <form class="form-horizontal" action="login.php" method="post">
                         <div class="control-group <?php echo !empty($userError)?'error':'';?>">
                         <label class="control-label">Gebruikersnaam</label>
                         <div class="controls">
@@ -89,7 +73,7 @@
 						</div>
 						<div class="form-actions">
                           <button type="submit" class="btn btn-success">Inloggen</button>
-						  <a href="signup.php" class="btn btn-success" >Aanmelden</a>
+                          <a class="btn" href="index.php">Terug</a>
                         </div>
                     </form>
                 </div>

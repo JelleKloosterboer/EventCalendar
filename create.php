@@ -75,7 +75,7 @@
             $q = $pdo->prepare($sql);
             $q->execute(array($name,$Sdate,$Edate,$Pdate,$typeEvent,$comment,$briefingM,$finished));
             Database::disconnect();
-            header("Location: index.php");
+            header("Location: dashboard.php");
         }
     }
 ?>
@@ -169,7 +169,7 @@
                       </div>
                       <div class="form-actions">
                           <button type="submit" class="btn btn-success">Toevoegen</button>
-                          <a class="btn" href="index.php">Terug</a>
+                          <a class="btn" href="dashboard.php">Terug</a>
                         </div>
                     </form>
                 </div>

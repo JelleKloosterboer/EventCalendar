@@ -7,25 +7,13 @@
 </head>
 	
 <body>
-<?php
-	//TODO: if session id{ let pass } else { go back to index }
-	session_start();
-	if(isset($_SESSION['id'])) {
-		//echo $_SESSION['id'];
-	} else {
-		//header("Location: index.php");
-		//echo "<script type='text/javascript'>alert('Niet ingelogt')</script>";
-	}
-?>
     <div class="container">
             <div class="row">
                 <h3>Evenementen</h3>
             </div>
             <div class="row">
 				<p>
-                    <a href="create.php" class="btn btn-success">Evenement toevoegen</a>
-					<a href="logout.php" class="btn btn-success" style = "float: right;">Uitloggen</a>
-					<a href="history.php" class="btn" style = "float: right; margin-right: 5px;">Historie</a>
+                    <a href="dashboard.php" class="btn btn-success">Terug naar dashboard</a>
                 </p>
                 <table class="table table-striped table-bordered">
                   <thead>
@@ -45,8 +33,11 @@
                   <tbody>
                   <?php
 						// connect to the database + select database
+						// TODO: DISPLAY ALL THE PAST EVENTS ORDERED BY EIND_DATUM
 						include 'database.php';
 						$pdo = Database::connect();
+						
+						$date = date('d/m/Y');
 						//select ALL data in the table
 						$sql = "SELECT id,
 						naam,
@@ -57,9 +48,13 @@
 						opmerking,
 						briefing_map,
 						afgerond
-						FROM evenement ORDER BY start_datum";
+						FROM evenement 
+						WHERE eind_datum < ?
+						ORDER BY eind_datum";
+						$q = $pdo->prepare($sql);
+						$q->execute(array($date));
 						// store above command in the variable $records
-						 foreach ($pdo->query($sql) as $row) {
+						 foreach ($q as $row) {
 								echo '<tr>';
 								echo '<td>'.'<a href="read.php?id='.$row['id'].'">'.$row['naam'].'</a></td>';
 								echo '<td>'.$row['start_datum'].'</td>';

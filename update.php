@@ -1,5 +1,6 @@
 <?php
-//TODO: Make this file UPDATE instead of CREATE
+session_start();
+//TODO: Make this file UPDATE instead of save
     require 'database.php';
  
     $id = null;
@@ -84,7 +85,7 @@
             $q = $pdo->prepare($sql);
             $q->execute(array($name,$Sdate,$Edate,$Pdate,$typeEvent,$comment,$briefingM,$finished,$id));
             Database::disconnect();
-            header("Location: index.php");
+            header("Location: dashboard.php");
         }
     } else {
         $pdo = Database::connect();
@@ -204,7 +205,7 @@
                       </div>
                       <div class="form-actions">
                           <button type="submit" class="btn btn-success">Bewerken</button>
-                          <a class="btn" href="index.php">Terug</a>
+                          <a class="btn" href="dashboard.php">Terug</a>
                         </div>
                     </form>
                 </div>

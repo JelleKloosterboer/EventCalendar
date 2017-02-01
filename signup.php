@@ -1,7 +1,7 @@
-
 <?php
      // all green code is optional
 	 // TODO insert the selected permission into the database
+	session_start();
     require 'database.php';
  
     if ( !empty($_POST)) {
@@ -23,7 +23,7 @@
         // validate input
         $valid = true;
         if (empty($first)) {
-            $firsError = 'Voer uw voornaam in.';
+            $firstError = 'Voer uw voornaam in.';
             $valid = false;
         }
          
