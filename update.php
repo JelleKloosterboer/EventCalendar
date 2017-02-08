@@ -5,11 +5,11 @@ session_start();
  
     $id = null;
     if ( !empty($_GET['id'])) {
-        $id = $_REQUEST['id'];
+        //$id = $_REQUEST['id'];
     }
      
     if ( null==$id ) {
-        header("Location: index.php");
+        //header("Location: index.php");
     }
      
     if ( !empty($_POST)) {
@@ -114,23 +114,34 @@ session_start();
         Database::disconnect();
     }
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <link   href="css/bootstrap.min.css" rel="stylesheet">
+	<link   href="css/read_tabs.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"></script>
+	<script src="js/read_tabs.js"></script>
 </head>
  
 <body>
+	
+	<ul class="tab">
+		<li><a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'Vooraf')" id="defaultOpen">Vooraf</a></li>
+		<li><a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'Executie')">Executie</a></li>
+		<li><a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'Evaluatie')">Evaluatie</a></li>
+	</ul>
+
     <div class="container">
-     
-                <div class="span10 offset1">
+        <div class="span10 offset1">
                     <div class="row">
                         <h3>Updaten Evenement <?php echo $data['naam'] ?></h3>
                     </div>
-             
-                    <form class="form-horizontal" action="update.php" method="post">
+			<form class="form-horizontal" action="update.php" method="post">
+					<div id="Vooraf" class="tabcontent">
                       <div class="control-group <?php echo !empty($nameError)?'error':'';?>">
                         <label class="control-label">Naam</label>
                         <div class="controls">
@@ -203,12 +214,53 @@ session_start();
                             <?php endif;?>
                         </div>
                       </div>
-                      <div class="form-actions">
+					</div>
+					<div id="Executie" class="tabcontent">
+						<div class="control-group <?php echo !empty($SdateError)?'error':'';?>">
+                        <label class="control-label">Test Executie 1</label>
+                        <div class="controls">
+                            <input name="Sdate" type="date" placeholder="Begin Datum" value="<?php echo !empty($Sdate)?$Sdate:'';?>">
+                            <?php if (!empty($SdateError)): ?>
+                                <span class="help-inline"><?php echo $SdateError;?></span>
+                            <?php endif;?>
+                        </div>
+                      </div>
+                      <div class="control-group <?php echo !empty($EdateError)?'error':'';?>">
+                        <label class="control-label">Test Executie 2</label>
+                        <div class="controls">
+                            <input name="Edate" type="date"  placeholder="Eind Datum" value="<?php echo !empty($Edate)?$Edate:'';?>">
+                            <?php if (!empty($EdateError)): ?>
+                                <span class="help-inline"><?php echo $EdateError;?></span>
+                            <?php endif;?>
+                        </div>
+					  </div>
+					</div>
+					<div id="Evaluatie" class="tabcontent">
+						<div class="control-group <?php echo !empty($SdateError)?'error':'';?>">
+                        <label class="control-label">Test Evaluatue 1</label>
+                        <div class="controls">
+                            <input name="Sdate" type="date" placeholder="Begin Datum" value="<?php echo !empty($Sdate)?$Sdate:'';?>">
+                            <?php if (!empty($SdateError)): ?>
+                                <span class="help-inline"><?php echo $SdateError;?></span>
+                            <?php endif;?>
+                        </div>
+                      </div>
+                      <div class="control-group <?php echo !empty($EdateError)?'error':'';?>">
+                        <label class="control-label">Test Evaluatue 2</label>
+                        <div class="controls">
+                            <input name="Edate" type="date"  placeholder="Eind Datum" value="<?php echo !empty($Edate)?$Edate:'';?>">
+                            <?php if (!empty($EdateError)): ?>
+                                <span class="help-inline"><?php echo $EdateError;?></span>
+                            <?php endif;?>
+                        </div>
+					  </div>
+					</div>
+				<div class="form-actions">
                           <button type="submit" class="btn btn-success">Bewerken</button>
                           <a class="btn" href="dashboard.php">Terug</a>
-                        </div>
-                    </form>
                 </div>
+			</form>
+        </div>
                  
     </div> <!-- /container -->
   </body>

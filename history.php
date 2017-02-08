@@ -13,7 +13,7 @@
             </div>
             <div class="row">
 				<p>
-                    <a href="dashboard.php" class="btn btn-success">Terug naar dashboard</a>
+                    <a href="dashboard.php" class="btn">Terug naar dashboard</a>
                 </p>
                 <table class="table table-striped table-bordered">
                   <thead>

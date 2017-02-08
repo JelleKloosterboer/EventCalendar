@@ -31,23 +31,31 @@
         Database::disconnect();
     }
 ?>
+
+<ul class="tab">
+  <li><a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'Vooraf')" id="defaultOpen">Vooraf</a></li>
+  <li><a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'Executie')">Executie</a></li>
+  <li><a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'Evaluatie')">Evaluatie</a></li>
+</ul>
  
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <link   href="css/bootstrap.min.css" rel="stylesheet">
+	<link   href="css/read_tabs.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"></script>
+	<script src="js/read_tabs.js"></script>
 </head>
  
 <body>
     <div class="container">
-     
-                <div class="span10 offset1">
-                    <div class="row">
-                        <h3>Overzicht Evenement <?php echo $data['naam'];?></h3>
-                    </div>
-                     
+          <div class="span10 offset1">
+              <div class="row">
+                   <h3>Overzicht Evenement <?php echo $data['naam'];?></h3>
+              </div>
+                <div id="Vooraf" class="tabcontent">  
+				<span onclick="this.parentElement.style.display='none'" style="float: right;">X</span>				
                     <div class="form-horizontal" >
                       <div class="control-group">
                         <label class="control-label">Begin datum</label>
@@ -105,15 +113,55 @@
                             </label>
                         </div>
                       </div>
-                        <div class="form-actions">
+					</div>
+				</div>
+			<div id="Executie" class="tabcontent">
+			<span onclick="this.parentElement.style.display='none'" style="float: right;">X</span>
+			<div class="form-horizontal" >
+                      <div class="control-group">
+                        <label class="control-label">Test Executie 1</label>
+                        <div class="controls">
+                            <label class="checkbox">
+                                Test Executie 1
+                            </label>
+                        </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label">Test Executie 2</label>
+                        <div class="controls">
+                            <label class="checkbox">
+                                Test Executie 2
+                            </label>
+                        </div>
+                      </div>
+			</div>
+			</div>
+			<div id="Evaluatie" class="tabcontent">
+			<span onclick="this.parentElement.style.display='none'" style="float: right;">X</span>
+			<div class="form-horizontal" >
+                      <div class="control-group">
+                        <label class="control-label">Test Evaluatue 1</label>
+                        <div class="controls">
+                            <label class="checkbox">
+                                Test Evaluatue 1
+                            </label>
+                        </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label">Test Evaluatue 2</label>
+                        <div class="controls">
+                            <label class="checkbox">
+                                Test Evaluatue 2
+                            </label>
+                        </div>
+                      </div>
+			</div>
+			</div>
+			<div class="form-actions">
 							<a class="btn btn-success" href="update.php">Bewerken</a>
 							<a class="btn" href="dashboard.php">Terug</a>
-                       </div>
-                     
-                      
-                    </div>
-                </div>
-                 
+            </div> 
+		</div>                 
     </div> <!-- /container -->
   </body>
 </html>
